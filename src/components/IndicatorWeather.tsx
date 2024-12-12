@@ -1,5 +1,7 @@
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import { createTheme } from '@mui/material';
+import { ThemeProvider } from '@emotion/react';
 
 interface Indicator {
     title?: String;
@@ -7,25 +9,43 @@ interface Indicator {
     value?: String;
 }
 
+const theme = createTheme({
+    components: {
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: '#3f3f3f',
+                    color: 'white',
+                    boxShadow: '0px 4px 10px #121212',
+                }
+            }
+        }
+    }
+})
+
 export default function IndicatorWeather(config: Indicator) {
     return (
-        <Paper
-            sx={{
-              p: 2,
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-          >
-            <Typography component="h2" variant="h6" 
-                        color="#FC7A1E" fontFamily="'Nunito', sans-serif" gutterBottom>
-                {config.title} 
-            </Typography>
-            <Typography fontFamily="'Nunito', sans-serif" component="p" variant="h4">
-                {config.value}
-            </Typography>
-            <Typography fontFamily="'Nunito', sans-serif" color="#F9C784" sx={{ flex: 1 }}>
-                {config.subtitle}
-            </Typography>
-        </Paper> 
+        <ThemeProvider theme={theme}>
+            <Paper
+                sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                }}
+            >
+                <Typography component="h2" variant="h6"
+                    gutterBottom
+                    sx={{ fontFamily: "'Verdana', sans-serif" }}>
+                    {config.title}
+                </Typography>
+                <Typography component="p" variant="h4"
+                    sx={{ fontFamily: "'Verdana', sans-serif", fontWeight: 'bold' }} >
+                    {config.value}
+                </Typography>
+                <Typography sx={{ flex: 1, fontFamily: "'Verdana', sans-serif" }}  >
+                    {config.subtitle}
+                </Typography>
+            </Paper>
+        </ThemeProvider>
     )
 }

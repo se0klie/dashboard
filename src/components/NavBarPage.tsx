@@ -10,9 +10,9 @@ interface NavbarProps {
 export default function Navbar({city}: NavbarProps) {
     return (
         <>
-            <AppBar position="fixed" sx={{background: '#067bc2'}}>
+            <AppBar position="fixed" sx={{background: '#3f3f3f'}}>
                 <Toolbar sx={{alignItems: 'center', height:'10vh'}}>
-                    <Typography variant="h3" sx={{ fontFamily: "'Nunito', sans-serif"}}>
+                    <Typography variant="h5" sx={{fontFamily: "'BoldFont', sans-serif",color:'#ffd99e'}}>
                         {city}'s Weather
                     </Typography>
                 </Toolbar>

@@ -8,12 +8,15 @@ import { useEffect, useState } from 'react';
 import Item from '../src/interface/Item';
 import NavBarPage from '../src/components/NavBarPage';
 import { Box, MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
+import darkTheme from './theme';
+import { ThemeProvider } from '@emotion/react';
 
 interface Indicator {
   title?: string;
   subtitle?: string;
   value?: string;
 }
+
 
 function App() {
   let [indicators, setIndicators] = useState<Indicator[]>([]);
@@ -126,23 +129,35 @@ function App() {
 
   return (
     <>
+    <ThemeProvider theme={darkTheme}>
       <NavBarPage city={city} />
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
           height: '100vh',
-          backgroundImage: 'url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnE4YTd6b3lrOHA1cHRqaGJvbG1uZ3c0aHlmOGVkZjFsdDRvbXdlZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0Iy5qPpMfP4C8cZG/giphy.webp)',
-          backgroundSize: 'cover', // Makes sure the image covers the full screen
-          backgroundRepeat: 'no-repeat', // Prevents the image from repeating
-          backgroundPosition: 'center', // Centers the image
         }}
       >
         <Grid container spacing={5} justifyContent='left' sx={{ paddingTop: 8 }}>
           <Select
             value={city}
             onChange={handleCityChange}
-            sx={{ width: 200, border: "3px solid #549FFF", borderRadius: "50px", backgroundColor: 'white'}}
+            sx={{ width: 200,  borderRadius: "50px", backgroundColor: '#3f3f3f', color:'white'}}
+
+            MenuProps={{
+              PaperProps: {
+                sx: {
+                  backgroundColor: '#575757', // Background color of the dropdown
+                  '& .MuiMenuItem-root': {
+                    color: '#ffffff', // Text color of MenuItems
+                    '&:hover': {
+                      backgroundColor: '#717171', // Hover effect
+                    },
+                  },
+                },
+              },
+            }}
+
           >
             <MenuItem value="Guayaquil">Guayaquil</MenuItem>
             <MenuItem value="Santa Elena">Santa Elena</MenuItem>
@@ -156,8 +171,8 @@ function App() {
           </Select>
         </Grid>
 
-        <Typography variant="h3" sx={{ color: '#84bcda', fontFamily: "'Nunito', sans-serif" }}>
-          Current data
+        <Typography variant="h3" sx={{ color: '#ffffff', fontFamily: "'Verdana', sans-serif", fontWeight:'bold'}}>
+          Current Data
         </Typography>
 
         <Grid container sx={{
@@ -178,7 +193,7 @@ function App() {
 
 
       {/* Table */}
-      <Grid size={{ xs: 12, xl: 8 }} sx={{ height: '100vh', width: '100%' }} paddingTop={4}>
+      <Grid size={{ xs: 12, xl: 8 }} sx={{ height: '60vh', width: '100%' }} paddingTop={4}>
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, xl: 9 }}>
             <TableWeather itemsIn={items} />
@@ -208,6 +223,7 @@ function App() {
           />
         </Grid>
       </Grid>
+      </ThemeProvider>
     </>
   );
 }

@@ -12,7 +12,6 @@ interface Data {
   itemsIn : Item[];
 }
 
-
 export default function BasicTable(data: Data) {
   let [rows, setRows] = useState<Item[]>([]);
 

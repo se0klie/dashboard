@@ -3,7 +3,26 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #282828;
 }
+body{
+  background-color: #282828;
+}
+
+@font-face {
+  font-family: 'BoldFont';
+  src: url('/fonts/boldFont.ttf') format('truetype'); /* Correct format for .ttf files */
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LightFont';
+  src: url('/fonts/lightFont.ttf') format('truetype'); /* Correct format for .ttf files */
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 .logo {
   height: 6em;
