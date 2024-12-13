@@ -44,6 +44,7 @@ function App() {
           const API_KEY = "64e39b1133933fafe80734ce341ec848";
           const response = await fetch(
             `https://api.openweathermap.org/data/2.5/forecast?q=${city}&mode=xml&appid=${API_KEY}`,
+            
             { signal: controller.signal }
           );
 
@@ -80,7 +81,9 @@ function App() {
 
           let cloudsArray = xml.getElementsByTagName("clouds");
           let clouds = Array.from(cloudsArray).slice(0, 6);
-
+          
+          let tempArray = xml.getElementsByTagName("temperature");
+          let tempSlice = Array.from(tempArray).slice(0,6);
 
           let temperature = xml.getElementsByTagName("temperature")[0];
           let tempNow = (parseFloat(temperature.getAttribute("value") ?? "") - 273.15).toFixed(1)
@@ -106,7 +109,9 @@ function App() {
             let probability = precipitation[i].getAttribute("probability") || "";
             let value = humidity[i].getAttribute("value") || "";
             let all = clouds[i].getAttribute("all") || "";
-            dataToItems.push({ "dateStart": from, "dateEnd": to, "precipitation": probability, "humidity": value, "clouds": all });
+            let tempStr = tempSlice[i].getAttribute("value") || "";
+            let temp = (parseFloat(tempStr) -  273.15).toFixed(1)
+            dataToItems.push({ "dateStart": from, "dateEnd": to, "precipitation": probability, "humidity": value, "clouds": all, "temperature": temp });
           }
           setIndicators(dataToIndicators);
           setItems(dataToItems);

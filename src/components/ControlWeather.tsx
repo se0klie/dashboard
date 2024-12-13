@@ -16,7 +16,8 @@ export default function ControlWeather({ chartVariable, setChartVariable }: Cont
   const items = [
     { "name": "Precipitación", "description": "Cantidad de agua que cae sobre una superficie en un período específico.", "key": "precipitation" },
     { "name": "Humedad", "description": "Cantidad de vapor de agua presente en el aire, generalmente expresada como un porcentaje.", "key": "humidity" },
-    { "name": "Nubosidad", "description": "Grado de cobertura del cielo por nubes, afectando la visibilidad y la cantidad de luz solar recibida.", "key": "clouds" }
+    { "name": "Nubosidad", "description": "Grado de cobertura del cielo por nubes, afectando la visibilidad y la cantidad de luz solar recibida.", "key": "clouds" },
+    { "name": "Temperatura", "description": "Temperatura en el ambiente en grados centigrados.", "key": "temperature" }
   ];
 
   const handleChange = (event: SelectChangeEvent) => {
